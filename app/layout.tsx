@@ -1,5 +1,6 @@
 import type { Metadata } from 'next'
 import { Geist, Geist_Mono } from 'next/font/google'
+import Header from './components/Header'
 import Navigation from './components/Navigation'
 import './globals.css'
 
@@ -25,10 +26,9 @@ export default function RootLayout({
 }>) {
 	return (
 		<html lang="en">
-			<body
-				className="bg-white"
-			>
+			<body className="bg-white">
 				<Navigation />
+				<Header />
 				{children}
 			</body>
 		</html>
