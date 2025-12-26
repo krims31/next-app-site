@@ -1,8 +1,8 @@
 'use client'
 
 import Image from 'next/image'
-import { useState } from 'react'
-import { AiOutlineHeart } from 'react-icons/ai' // Добавил пустое сердечко
+import { useEffect, useState } from 'react'
+import { AiOutlineHeart } from 'react-icons/ai'
 import { FcLike } from 'react-icons/fc'
 import { LuMessageSquareMore } from 'react-icons/lu'
 import img1 from './assets/img1.png'
@@ -26,12 +26,31 @@ export default function Article() {
 		post4: false
 	})
 
+	// Функция для безопасного преобразования в число
+	const safeParseNumber = (value: any): number => {
+		if (typeof value === 'number') return value
+		if (typeof value === 'string') {
+			const num = parseInt(value, 10)
+			return isNaN(num) ? 0 : num
+		}
+		return 0
+	}
+
 	const [likeCounts, setLikeCounts] = useState({
-		post1: Number(article.like),
-		post2: Number(ai.like2),
-		post3: Number(ml.like3),
-		post4: Number(blockchain.like4)
+		post1: 0,
+		post2: 0,
+		post3: 0,
+		post4: 0
 	})
+
+	useEffect(() => {
+		setLikeCounts({
+			post1: safeParseNumber(article.like),
+			post2: safeParseNumber(ai.like2),
+			post3: safeParseNumber(ml.like3),
+			post4: safeParseNumber(blockchain.like4)
+		})
+	}, [])
 
 	const handleLike = (postId: keyof typeof isLike) => {
 		try {
@@ -42,7 +61,7 @@ export default function Article() {
 					...prevCounts,
 					[postId]: newLikeState
 						? prevCounts[postId] + 1
-						: prevCounts[postId] - 1
+						: Math.max(0, prevCounts[postId] - 1)
 				}))
 
 				return {
@@ -82,7 +101,8 @@ export default function Article() {
 					src={img1}
 					alt="blockchain"
 					width={260}
-					className="mt-9 ml-20 border rounded-2xl"
+					className="mt-9 ml-20 border rounded-2xl transition-all duration-300 
+			   hover:shadow-lg hover:shadow-gray-300/50 hover:scale-[1.02]"
 				/>
 				<p className="ml-90 -mt-45 text-gray-400">{article.jan}</p>
 				<p className="ml-120 -mt-6">{article.python}</p>
@@ -110,7 +130,7 @@ export default function Article() {
 
 				<div className="flex items-center gap-1 ml-192 -mt-5">
 					<LuMessageSquareMore />
-					<p className="text-gray-400 ml-1">{article.like}</p>
+					<p className="text-gray-400 ml-1">{safeParseNumber(article.like)}</p>
 				</div>
 			</div>
 
@@ -120,7 +140,8 @@ export default function Article() {
 					src={img3}
 					alt="ai"
 					width={260}
-					className="mt-13 ml-20 border rounded-2xl"
+					className="mt-13 ml-20 border rounded-2xl transition-all duration-300 
+			   hover:shadow-lg hover:shadow-gray-300/50 hover:scale-[1.02]"
 				/>
 				<p className="ml-90 -mt-45 text-gray-400">{ai.nov}</p>
 				<p className="ml-120 -mt-6">{ai.ai}</p>
@@ -148,7 +169,7 @@ export default function Article() {
 
 				<div className="flex items-center gap-1 ml-192 -mt-5">
 					<LuMessageSquareMore />
-					<p className="text-gray-400 ml-1">{ai.like2}</p>
+					<p className="text-gray-400 ml-1">{safeParseNumber(ai.like2)}</p>
 				</div>
 			</div>
 
@@ -158,7 +179,8 @@ export default function Article() {
 					src={img5}
 					alt="ai"
 					width={260}
-					className="mt-13 ml-20 border rounded-2xl"
+					className="mt-13 ml-20 border rounded-2xl transition-all duration-300 
+			   hover:shadow-lg hover:shadow-gray-300/50 hover:scale-[1.02]"
 				/>
 				<p className="ml-90 -mt-45 text-gray-400">{ml.march}</p>
 				<p className="ml-120 -mt-6">{ml.machine}</p>
@@ -186,7 +208,7 @@ export default function Article() {
 
 				<div className="flex items-center gap-1 ml-192 -mt-5">
 					<LuMessageSquareMore />
-					<p className="text-gray-400 ml-1">{ml.like3}</p>
+					<p className="text-gray-400 ml-1">{safeParseNumber(ml.like3)}</p>
 				</div>
 			</div>
 
@@ -196,7 +218,8 @@ export default function Article() {
 					src={img7}
 					alt="ai"
 					width={260}
-					className="mt-13 ml-20 border rounded-2xl"
+					className="mt-13 ml-20 border rounded-2xl transition-all duration-300 
+			   hover:shadow-lg hover:shadow-gray-300/50 hover:scale-[1.02]"
 				/>
 				<p className="ml-90 -mt-45 text-gray-400">{blockchain.oct}</p>
 				<p className="ml-120 -mt-6">{blockchain.block}</p>
@@ -224,10 +247,15 @@ export default function Article() {
 
 				<div className="flex items-center gap-1 ml-192 -mt-5">
 					<LuMessageSquareMore />
-					<p className="text-gray-400 ml-1">{blockchain.like4}</p>
+					<p className="text-gray-400 ml-1">
+						{safeParseNumber(blockchain.like4)}
+					</p>
 				</div>
 
-				<button className="ml-20 mt-5 bg-gray-100 hover:bg-gray-200 text-gray-700 px-4 py-2 rounded-lg transition-colors">
+				<button
+					className="ml-100 mt-20 bg-black text-white font-bold px-6 py-2 rounded-3xl  transition-all duration-300 
+			   hover:shadow-lg hover:shadow-gray-300/50 hover:scale-[1.02]"
+				>
 					{article.load}
 				</button>
 			</div>
