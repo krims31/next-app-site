@@ -110,7 +110,7 @@ export default function Article() {
         />
         <p className="ml-90 -mt-45 text-gray-400">{article.jan}</p>
         <p className="ml-120 -mt-6">{article.python}</p>
-        <h1 className="ml-90 mt-4">{article.block}</h1>
+        <h1 className="ml-90 mt-4 font-bold">{article.block}</h1>
         <p className="ml-90 mt-2 text-gray-400">{article.learn}</p>
         <Image
           src={img2}
@@ -149,7 +149,7 @@ export default function Article() {
         />
         <p className="ml-90 -mt-45 text-gray-400">{ai.nov}</p>
         <p className="ml-120 -mt-6">{ai.ai}</p>
-        <h1 className="ml-90 mt-4">{ai.howAi}</h1>
+        <h1 className="ml-90 mt-4 font-bold">{ai.howAi}</h1>
         <p className="ml-90 mt-2 text-gray-400">{ai.discover}</p>
         <Image
           src={img4}
@@ -188,7 +188,7 @@ export default function Article() {
         />
         <p className="ml-90 -mt-45 text-gray-400">{ml.march}</p>
         <p className="ml-120 -mt-6">{ml.machine}</p>
-        <h1 className="ml-90 mt-4">{ml.machineLearn}</h1>
+        <h1 className="ml-90 mt-4 font-bold">{ml.machineLearn}</h1>
         <p className="ml-90 mt-2 text-gray-400">{ml.explore}</p>
         <Image
           src={img6}
@@ -227,7 +227,7 @@ export default function Article() {
         />
         <p className="ml-90 -mt-45 text-gray-400">{blockchain.oct}</p>
         <p className="ml-120 -mt-6">{blockchain.block}</p>
-        <h1 className="ml-90 mt-4">{blockchain.meet}</h1>
+        <h1 className="ml-90 mt-4 font-bold">{blockchain.meet}</h1>
         <p className="ml-90 mt-2 text-gray-400">{blockchain.see}</p>
         <Image
           src={img8}

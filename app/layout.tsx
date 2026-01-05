@@ -3,6 +3,8 @@ import { Geist, Geist_Mono } from 'next/font/google'
 import Article from './components/Article'
 import Header from './components/Header'
 import Navigation from './components/Navigation'
+import Topics from './components/Topics.tsx'
+import Writer from './components/Writer.tsx'
 import './globals.css'
 
 const geistSans = Geist({
@@ -31,6 +33,8 @@ export default function RootLayout({
 				<Navigation />
 				<Header />
 				<Article />
+        <Topics />
+        <Writer />
 				{children}
 			</body>
 		</html>
